@@ -1,0 +1,5 @@
+<deploy>
+	<description>Modul til skolevej</description>
+	<version>0.9</version>
+    <copydir fromdir="[module:school_road.dir]/internal/dist" todir="[cbinfo.wwwroot.dir]/modules/school_road" />
+</deploy>
