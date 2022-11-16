@@ -1,31 +1,52 @@
-Skolevej
 
-For at få beregnet om en elev er berettiget til godtgørelse indtastes skoleadressen i fra adresse og elevadressen i til adresse i nedenstående skema. Klik derefter på Beregn.
-	[Vælg skole]
-	[Skriv elev adresse]
-	[vælg klasse trin]
-	[beregn] [slet alt] [ny elev]
-	
-	Resultat:
-	Skolevej
+--------------------
+	OM SKOLEVEJ
+--------------------
 
- 	 Fra adresse  
- Navn: 	  
- Vejnavn: 	 Birkevej
- Husnummer: 	 1B
- Postnummer:	 4920
- 
- 	 Til adresse  
- Navn: 	  
- Vejnavn: 	 Vesterborgvej
- Husnummer: 	 12
- Postnummer:	 4953
- 
- Skolevej 
- Afstand	  4,8 km
- Køretid 	  20 minutter
- 
- Klassetrin: Bh.kl - 3 kl.
- Skolevej:  	  4,8 km 	 
- Berettiget til tilskud:  	  Ja
- [Tilbage] [ny Elev] 
+Modul til beregning af afstand fra skole til elev.
+Bruges til at se om elev er berettiget til buskort.
+
+
+--------------------
+	INSTALLATION
+--------------------
+
+1:	Installér modulet
+	Tilføj følgende linje til modulfilen:
+    	<module dir="custom/school_road" name="school_road" permissionlevel="public"/>
+
+2:	Tilføj parametrer til en cbinfo-fil:
+	Parameteren skal indholde minimapid'et fra det ønskede minimap
+		<param name="module.school_road.minimapid">d2c4h790-f45c-4fed-a2vb-sfgo954vhke1</param>
+
+3:	Ret parametrer i deplay fil:
+	<param name="module.school_road.route.profile">skolerute</param>
+	<param name="module.school_road.logo">/images/custom/Lolland9.png</param>
+
+4:	Ret datasources.xml
+	Så den peger på en tabel med punkter for hver skole:
+
+	<datasource endpoint="ep_lk_skoler" name="lk_skoler_skoler">
+        <table geometrycolumn="geom" name="skoler" pkcolumn="id" schema="skoler"/>
+    </datasource>
+
+	Tabellen skal indeholde disse atributter:
+		id: string;
+		skole: string;
+		vejnavn: string;
+		husnummer: string;
+		postnummer: number;
+		by: string;
+		shape_wkt: { wkt: string };
+		
+--------------------
+	DEPENDENCIES
+--------------------
+Modulet bygger på SpsRouter.
+Det er en forudsætning, at SpsRoute Routing Service er installeret, hvor løsningen skal bruges.
+
+--------------------
+	CHANGES
+--------------------
+Date		Version	Ini		Description
+2022-11-16	1.0.0	MARPO	Modulet oprettet

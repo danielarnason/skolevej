@@ -1,7 +1,11 @@
 import React, { FC } from 'react';
 import './navbar.scss';
 
-const Navbar: FC = () => {
+interface NavbarProps {
+    logo: string;
+}
+
+const Navbar: FC = (props: NavbarProps) => {
     return (
         <>
             <nav
@@ -12,7 +16,7 @@ const Navbar: FC = () => {
                 <div className="navbar-brand">
                     <a className="navbar-item noHover">
                         <img
-                            src="https://www.lolland.dk/Files/Images/system/Lolland9.png"
+                            src={props.logo}
                             width="112"
                             height="28"
                         />

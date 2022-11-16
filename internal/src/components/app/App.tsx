@@ -4,6 +4,7 @@ import Form from '../form/Form';
 import Navbar from '../navbar/Navbar';
 import { schoolsMinimapId } from '../../../config';
 import Spsroute from '../spsroute/Spsroute';
+import './app.scss';
 
 export interface SkoleDataRow {
     id: string;
@@ -19,6 +20,8 @@ const App: FC = () => {
     const minimap: any = useRef(null);
     const [skoleData, setSkoleData] = useState([]);
     const [result, setResult] = useState();
+    const [logo, setLogo] = useState();
+    const [kommunenr, setKommunenr] = useState();
 
     const onMapReady = (mm) => {
         minimap.current = mm;
@@ -41,17 +44,25 @@ const App: FC = () => {
             });
             setSkoleData(data);
         });
+        const siteUrl = minimap.current.getSession().getParam("cbinfo.site.url");
+        const logoUrl = minimap.current.getSession().getParam("module.school_road.logo");
+        const kommunenr = minimap.current.getSession().getParam("config.kommunenr.firecifre");
+        setLogo(siteUrl+logoUrl)
+        setKommunenr(kommunenr)
     };
-
 
     const spsRoute = async (
         schoolId: number,
         toCoord: string,
         distance: string,
-        endAddress: string
+        endAddress: string,
+        grade: string
     ) => {
+        const siteUrl = minimap.current.getSession().getParam("cbinfo.site.url");
+        const apiUrl = minimap.current.getSession().getParam("module.spsroute.service.url");
+        const routeProfile = minimap.current.getSession().getParam("module.school_road.route.profile");
         const school = skoleData.find((item) => item.id === schoolId);
-        const url = `http://webgis-test.lolland.dk/spsroute/api/1.0/route?profile=skolerute&from=${school.latLong}&to=${toCoord}&srs=epsg:25832&lang=da`;
+        const url = `${siteUrl}${apiUrl}/route?profile=${routeProfile}&from=${school.latLong}&to=${toCoord}&srs=epsg:25832&lang=da`;
         const req = await fetch(url);
         const result = await req.json();
         const res = {
@@ -60,6 +71,7 @@ const App: FC = () => {
             endAddress,
             schoolName: school.skole,
             schoolAddress: school.adresse,
+            grade: grade,
         };
         setResult(res);
         minimap.current
@@ -67,19 +79,25 @@ const App: FC = () => {
           .setMarkingGeometry(result.wkt, true, null, 100);
 
     };
-
+    
     return (
         <>
             <section className="hero is-info is-small">
-                <Navbar />
+                {logo && <Navbar 
+                    logo={logo}
+                />}
             </section>
             <section className="section">
                 <div className="container">
                     <div className="columns">
                         <div className="column is-4 box">
-                            <Form data={skoleData} onCalculate={spsRoute} />
+                            {kommunenr && <Form 
+                                data={skoleData} 
+                                onCalculate={spsRoute} 
+                                kommunenr={kommunenr}
+                            />}
                         </div>
-                        <div className="column is-4">
+                        <div className="column is-4 init-height">
                             {result && (
                                 <Spsroute
                                     travelDistanceInMeter={
@@ -90,6 +108,7 @@ const App: FC = () => {
                                     endAddress={result.endAddress}
                                     schoolName={result.schoolName}
                                     schoolAddress={result.schoolAddress}
+                                    grade={result.grade}
                                 />
                             )}
 

@@ -1,11 +1,10 @@
-// https://dawadocs.dataforsyningen.dk/dok/guide/autocomplete
-
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 
 interface AutocompleteProps {
     onAdresSelected: (coord: string, address: string) => void;
     maxSuggestions: number;
     onClearInput: () => void;
+    kommunenr:string;
 }
 
 interface Suggestion {
@@ -17,8 +16,8 @@ interface Suggestion {
     };
 }
 
-const search = async (q: string, max: number) => {
-    const url = `https://api.dataforsyningen.dk/adgangsadresser/autocomplete?kommunekode=0360&srid=25832&per_side=${max}&q=${q}`;
+const search = async (q: string, max: number, kommunekode: string) => {
+    const url = `https://api.dataforsyningen.dk/adgangsadresser/autocomplete?kommunekode=${kommunekode}&srid=25832&per_side=${max}&q=${q}`;
     const req = await fetch(url);
     const result = await req.json();
     return result;
@@ -29,7 +28,7 @@ const Autocomplete: FC = (props: AutocompleteProps) => {
     const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
     const onSearchTextChanged = async (e) => {
         setSearchText(e.target.value);
-        const searchResult = await search(e.target.value, props.maxSuggestions);
+        const searchResult = await search(e.target.value, props.maxSuggestions, props.kommunenr);
         setSuggestions(searchResult);
     };
 

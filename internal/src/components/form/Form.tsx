@@ -8,8 +8,10 @@ interface FormProps {
         schoolId: number,
         toCoord: string,
         distance: string,
-        endAddress: string
+        endAddress: string,
+        grade: string
     ) => void;
+    kommunenr: string;
 }
 
 const Form: FC = (props: FormProps) => {
@@ -19,6 +21,7 @@ const Form: FC = (props: FormProps) => {
     const [endPoint, setEndPoint] = useState<string>(null);
     const [endAddress, setEndAddress] = useState<string>(null);
     const [distance, setDistance] = useState<string>('2500');
+    const [grade, setGrade] = useState<string>('0.- 3. klasse')
 
     const onSelected = (coord, address) => {
         setEndPoint(coord);
@@ -32,32 +35,21 @@ const Form: FC = (props: FormProps) => {
     };
     const handleChange = (event) => {
         setDistance(event.target.value);
+        setGrade(event.target.name)
     };
     const formHasValues = !school || !endPoint ? true : false;
     const handleClick = (event) => {
         event.preventDefault();
-        props.onCalculate(schoolId, endPoint, distance, endAddress);
+        props.onCalculate(schoolId, endPoint, distance, endAddress, grade);
     };
-const handleTest = (event)=> {
-    event.preventDefault();
-    console.log('schoolId:',schoolId)
-    console.log('school:',school)
-    console.log('endPoint:',endPoint)
-    console.log('endAddress:',endAddress)
-    console.log('distance:',distance)
-    console.log('props.data:',props.data)
-
-}
 const handleClearInput = ()=> {
     setEndPoint(null);
     setEndAddress(null);
 }
-
     return (
         <>
             <form>
                 <div className="field">
-                    {/* <div className="control is-expanded"> */}
                         <label className="label">Skole</label>
                         <div className="select">
                             <select
@@ -80,6 +72,7 @@ const handleClearInput = ()=> {
                     onAdresSelected={onSelected}
                     maxSuggestions={5}
                     onClearInput={handleClearInput}
+                    kommunenr={props.kommunenr}
                 />
 
                 <div className="field">
@@ -88,7 +81,7 @@ const handleClearInput = ()=> {
                         <label className="radio">
                             <input
                                 type="radio"
-                                name="question"
+                                name="0.- 3. klasse"
                                 id="1"
                                 value="2500"
                                 checked={distance === '2500'}
@@ -99,7 +92,7 @@ const handleClearInput = ()=> {
                         <label className="radio">
                             <input
                                 type="radio"
-                                name="question"
+                                name="4.- 6. klasse"
                                 id="2"
                                 value="6000"
                                 checked={distance === '6000'}
@@ -110,7 +103,7 @@ const handleClearInput = ()=> {
                         <label className="radio">
                             <input
                                 type="radio"
-                                name="question"
+                                name="7.- 9. klasse"
                                 id="3"
                                 value="7000"
                                 checked={distance === '7000'}
@@ -121,7 +114,7 @@ const handleClearInput = ()=> {
                         <label className="radio">
                             <input
                                 type="radio"
-                                name="question"
+                                name="10. klasse"
                                 id="4"
                                 value="9000"
                                 checked={distance === '9000'}
@@ -140,14 +133,6 @@ const handleClearInput = ()=> {
                             onClick={handleClick}
                         >
                             Beregn
-                        </button>
-                    </div>
-                    <div className="control">
-                        <button 
-                            className="button is-link"
-                            onClick={handleTest}
-                        >
-                            Test indhold
                         </button>
                     </div>
                     <div className="control">

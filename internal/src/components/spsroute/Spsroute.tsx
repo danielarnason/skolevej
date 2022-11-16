@@ -23,6 +23,7 @@ interface SpsrouteProps {
     endAddress: string;
     schoolName: string;
     schoolAddress: string;
+    grade: string;
 }
 
 const Spsroute: FC = (props: SpsrouteProps) => {
@@ -72,7 +73,7 @@ const Spsroute: FC = (props: SpsrouteProps) => {
                             </dd>
                         </dl>
                         <em>
-                            På det valgte klassetrin udstedes der buskort til
+                            På klassetrin ({props.grade}) udstedes der buskort til
                             alle elever, der har længere skolevej end {toPrettyNumber(props.distance / 1000
                                 )} km
                         </em>
