@@ -13,7 +13,7 @@ INSTALLATION
 
 1:	Installér modulet
 	Tilføj følgende linje til modulfilen:
-    	<module dir="custom/school_road" name="school_road" permissionlevel="public"/>
+		<module dir="custom/school_road" name="school_road" permissionlevel="public"/>
 
 2:	Tilføj parametrer til relevante cbinfo-filer:
 	Parameteren skal indholde minimapid'et fra det ønskede minimap
@@ -27,8 +27,8 @@ INSTALLATION
 	Så den peger på en tabel med punkter for hver skole:
 
 	<datasource endpoint="ep_lk_skoler" name="lk_skoler_skoler">
-        <table geometrycolumn="geom" name="skoler" pkcolumn="id" schema="skoler"/>
-    </datasource>
+		<table geometrycolumn="geom" name="skoler" pkcolumn="id" schema="skoler"/>
+	</datasource>
 
 	Tabellen skal indeholde disse atributter:
 		id: string;
@@ -49,4 +49,4 @@ Det er en forudsætning, at SpsRoute Routing Service er installeret, hvor løsni
 CHANGES
 --------------------
 Date		Version	Ini		Description
-2022-11-16	1.0.0	MARPO	Modulet oprettet
+2022-11-16	1.0.0	MARPO		Modulet oprettet
