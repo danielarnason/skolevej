@@ -26,7 +26,7 @@ INSTALLATION
 4:	Ret datasources.xml
 	Så den peger på en tabel med punkter for hver skole:
 
-	<datasource endpoint="ep_lk_skoler" name="lk_skoler_skoler">
+	<datasource endpoint="ep_lk_school_road" name="lk_school_road_skoler">
 		<table geometrycolumn="geom" name="skoler" pkcolumn="id" schema="skoler"/>
 	</datasource>
 
