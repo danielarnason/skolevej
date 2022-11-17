@@ -5,9 +5,9 @@
             <singletile>true</singletile>
         </clientlayer>
     </clientlayers>
-    <layer datasource="lk_skoler_skoler" name="lk_skoler_skoler_layer0_1636106631202" type="point">[datasource:lk_skoler_skoler.mapfile-datasource]
+    <layer datasource="lk_school_road_skoler" name="lk_school_road_skoler" type="point">[datasource:lk_school_road_skoler.mapfile-datasource]
         <class>
-            <name>lk_skoler_skoler</name>
+            <name>Skoler</name>
             <style>
                 <color>0 0 0</color>
                 <size>7</size>

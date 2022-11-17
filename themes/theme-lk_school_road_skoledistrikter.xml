@@ -6,7 +6,7 @@
         </clientlayer>
     </clientlayers>
     <cbinfo-metadata/>
-    <layer datasource="lk_skoler_skoledistrikter" name="lk_skoler_skoledistrikter" type="polygon">[datasource:lk_skoler_skoledistrikter.mapfile-datasource]
+    <layer datasource="lk_school_road_skoledistrikter" name="lk_school_road_skoledistrikter" type="polygon">[datasource:lk_school_road_skoledistrikter.mapfile-datasource]
         <class>
             <name>Maribo Skole</name>
             <expression>/^12$/</expression>

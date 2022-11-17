@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <datasources>
-    <endpoint endpointtype="postgis" name="ep_lk_skoler">
+    <endpoint endpointtype="postgis" name="ep_lk_school_road">
         <connect>[cbinfo.pg_endpoint.connect]</connect>
         <user>[cbinfo.pg_endpoint.usr]</user>
         <pwd>[cbinfo.pg_endpoint.pwd]</pwd>
     </endpoint>
-    <datasource endpoint="ep_lk_skoler" name="lk_skoler_skoledistrikter">
+    <datasource endpoint="ep_lk_school_road" name="lk_school_road_skoledistrikter">
         <table geometrycolumn="geom" name="skoledistrikter_mapcentia" pkcolumn="id" schema="skoler"/>
     </datasource>
-	<datasource endpoint="ep_lk_skoler" name="lk_skoler_skoler">
+	<datasource endpoint="ep_lk_school_road" name="lk_school_road_skoler">
         <table geometrycolumn="geom" name="skoler" pkcolumn="id" schema="skoler"/>
     </datasource>
 </datasources>
