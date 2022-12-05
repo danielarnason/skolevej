@@ -26,7 +26,7 @@ const App: FC = () => {
     const onMapReady = (mm) => {
         minimap.current = mm;
         const ses = mm.getSession();
-        const ds = ses.getDatasource('lk_school_road_skoler');
+        const ds = ses.getDatasource('skoler_skolevej_modul');
         ds.execute({ command: 'read' }, (rows: SkoleDataRow[]) => {
             const data = rows.map((element) => {
                 const wkt = element.shape_wkt.wkt;
@@ -44,10 +44,10 @@ const App: FC = () => {
             });
             setSkoleData(data);
         });
-        const siteUrl = minimap.current.getSession().getParam("cbinfo.site.url");
-        const logoUrl = minimap.current.getSession().getParam("module.school_road.logo");
+        // const siteUrl = minimap.current.getSession().getParam("cbinfo.site.url");
+        // const logoUrl = minimap.current.getSession().getParam("module.school_road.logo");
         const kommunenr = minimap.current.getSession().getParam("config.kommunenr.firecifre");
-        setLogo(siteUrl+logoUrl)
+        // setLogo(siteUrl+logoUrl)
         setKommunenr(kommunenr)
     };
 
@@ -60,9 +60,10 @@ const App: FC = () => {
     ) => {
         const siteUrl = minimap.current.getSession().getParam("cbinfo.site.url");
         const apiUrl = minimap.current.getSession().getParam("module.spsroute.service.url");
-        const routeProfile = minimap.current.getSession().getParam("module.school_road.route.profile");
+        const routeProfile = 'foot';
+        // const routeProfile = minimap.current.getSession().getParam("module.school_road.route.profile");
         const school = skoleData.find((item) => item.id === schoolId);
-        const url = `${siteUrl}${apiUrl}/route?profile=${routeProfile}&from=${school.latLong}&to=${toCoord}&srs=epsg:25832&lang=da`;
+        const url = `https://test-webgis.slagelse.dk/spsroute/api/1.0/route?profile=${routeProfile}&from=${school.latLong}&to=${toCoord}&srs=epsg:25832&lang=da`;
         const req = await fetch(url);
         const result = await req.json();
         const res = {

@@ -12,7 +12,7 @@ const Map: FC = (props: mapProps) => {
   useEffect(() => {
     MiniMap.createMiniMap({
       mapDiv: props.name + '-minimapbody',
-      minimapId: props.id,
+      minimapId: 'ad38978f-d881-4291-b45e-8e6d68cedbb4',
       initCallback: props.onReady,
     });
   }, []);

@@ -37,21 +37,22 @@ const Spsroute: FC = (props: SpsrouteProps) => {
             ? 'Berettiget til tilskud'
             : 'Ikke berettiget til tilskud';
 
-    const instructions = props.instructions;
-    const travelGuide: Element[] = [];
-    for (const instruction of instructions) {
-        travelGuide.push(
-            <p className="panel-block">
-                {/* <span className="panel-icon">
-            <i
-                className="fas fa-book"
-                aria-hidden="true"
-            ></i>
-        </span> */}
-                {instruction}
-            </p>
-        );
-    }
+    // const instructions = props.instructions;
+    // console.log(instructions)
+    // const travelGuide: Element[] = [];
+    // for (const instruction of instructions) {
+    //     travelGuide.push(
+    //         <p className="panel-block">
+    //             {/* <span className="panel-icon">
+    //         <i
+    //             className="fas fa-book"
+    //             aria-hidden="true"
+    //         ></i>
+    //     </span> */}
+    //             {instruction}
+    //         </p>
+    //     );
+    // }
     const travelDistanceInMeter = distance(props.travelDistanceInMeter, props.distance)
     return (
         <>
