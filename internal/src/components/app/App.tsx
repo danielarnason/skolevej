@@ -77,7 +77,6 @@ const App: FC = () => {
         minimap.current
           .getMapControl()
           .setMarkingGeometry(result.wkt, true, null, 100);
-
     };
     
     return (
@@ -111,7 +110,6 @@ const App: FC = () => {
                                     grade={result.grade}
                                 />
                             )}
-
                             {!result && (
                                 <article className="message is-light">
                                     <div className="message-body">
@@ -125,7 +123,7 @@ const App: FC = () => {
                                                     Vælg skole.
                                                 </li>
                                                 <li>
-                                                    Indtast elevadressen skema.
+                                                    Indtast elevadressen.
                                                 </li>
                                                 <li>
                                                     Vælg klassetrin.
