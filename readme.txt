@@ -31,13 +31,13 @@ INSTALLATION
 	</datasource>
 
 	Tabellen skal indeholde disse atributter:
-		id: string;
+		id: serial4 NOT NULL;
 		skole: string;
 		vejnavn: string;
 		husnummer: string;
 		postnummer: number;
 		by: string;
-		shape_wkt: { wkt: string };
+		geom: geometry(point);
 		
 --------------------
 DEPENDENCIES
