@@ -80,11 +80,11 @@ const Spsroute: FC = (props: SpsrouteProps) => {
                     </button>
                 </div>
             </article>
-            <Travelguide
+            {/* <Travelguide
                 instructions={props.instructions}
                 isActive={isActive}
                 onClose={onClose}
-            />
+            /> */}
         </>
     );
 };

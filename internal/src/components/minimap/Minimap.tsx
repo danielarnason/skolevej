@@ -11,10 +11,9 @@ declare const MiniMap: any;
 const Map: FC = (props: mapProps) => {
   useEffect(() => {
     MiniMap.createMiniMap({
-      mapDiv: props.name + '-minimapbody',
-      minimapId: props.id,
-      initCallback: props.onReady,
-    });
+      mapDiv: `${props.name}-minimapbody`,
+      initCallback: props.onReady
+    })
   }, []);
   return (
     <>
